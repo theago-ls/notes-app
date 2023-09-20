@@ -20,3 +20,17 @@ export function useMediaQuery(query: string): boolean {
 
 	return matches
 }
+
+export function saveToStorage<T = unknown>(key: string, value: T): void {
+	localStorage.setItem(key, JSON.stringify(value))
+}
+
+export function getFromStorage<T = unknown>(key: string): T[] {
+	const data = localStorage.getItem(key)
+
+	if (data) {
+		return JSON.parse(data) as T[]
+	}
+
+	return []
+}
