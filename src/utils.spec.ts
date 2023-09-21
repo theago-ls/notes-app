@@ -13,7 +13,9 @@ describe('utils', () => {
 			)
 			expect(result.current).toBeFalsy()
 
-			act(() => window.resizeTo(MIN_WITDH, 0))
+			act(() => {
+				window.resizeTo(MIN_WITDH, 0)
+			})
 
 			expect(result.current).toBeTruthy()
 		})

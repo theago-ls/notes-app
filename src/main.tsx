@@ -4,6 +4,8 @@ import { registerSW } from 'virtual:pwa-register'
 
 import App from 'App'
 
+import { ThemeProvider } from '@material-tailwind/react'
+import NoteContextProvider from 'contexts/NoteContext'
 import './index.css'
 
 registerSW()
@@ -13,7 +15,11 @@ if (container) {
 	const root = createRoot(container)
 	root.render(
 		<StrictMode>
-			<App />
+			<ThemeProvider>
+				<NoteContextProvider>
+					<App />
+				</NoteContextProvider>
+			</ThemeProvider>
 		</StrictMode>
 	)
 }

@@ -36,6 +36,7 @@ beforeAll(() => {
 				const change = matchQuery()
 				if (change !== instance.matches) {
 					instance.matches = change
+					// eslint-disable-next-line no-restricted-syntax
 					for (const listener of listeners) listener()
 				}
 			})
