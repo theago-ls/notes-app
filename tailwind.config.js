@@ -1,5 +1,6 @@
 const defaultConfig = require('tailwindcss/defaultConfig')
 const formsPlugin = require('@tailwindcss/forms')
+const withMT = require('@material-tailwind/react/utils/withMT')
 
 /** @type {import('tailwindcss/types').Config} */
 const config = {
@@ -23,4 +24,4 @@ const config = {
 	experimental: { optimizeUniversalDefaults: true },
 	plugins: [formsPlugin]
 }
-module.exports = config
+module.exports = withMT(config)
