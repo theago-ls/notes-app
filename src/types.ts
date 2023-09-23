@@ -1,10 +1,10 @@
 export enum Category {
-	Home = 1,
-	Personal,
-	Work
+	Home = 'home',
+	Personal = 'personal',
+	Work = 'work'
 }
 
-export interface Note {
+export type Note = {
 	id: string
 	title: string
 	description: string
