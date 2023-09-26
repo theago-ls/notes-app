@@ -95,18 +95,23 @@ export default function AddNoteDialog({
 			<form>
 				<DialogBody className='flex flex-col px-9 pb-0 pt-9'>
 					<div className='flex w-full flex-col gap-3 lg:flex-row lg:gap-2'>
-						<Input
-							placeholder='Add title...'
-							variant='outlined'
-							labelProps={{
-								className: 'before:content-none after:content-none'
-							}}
-							className='rounded-sm border-none !bg-bgGray text-gray-800  lg:w-[475px]'
-							value={newNote.title}
-							onChange={e => {
-								setNewNote(prev => ({ ...prev, title: e.target.value }))
-							}}
-						/>
+						<div>
+							<Input
+								placeholder='Add title...'
+								variant='outlined'
+								labelProps={{
+									className: 'before:content-none after:content-none'
+								}}
+								className='rounded-sm border-none !bg-bgGray text-gray-800  lg:w-[475px]'
+								value={newNote.title}
+								onChange={e => {
+									setNewNote(prev => ({ ...prev, title: e.target.value }))
+								}}
+							/>
+							{errors?.title ? (
+								<p className='text-red-500'>{errors.title}</p>
+							) : null}
+						</div>
 						<div className='lg:min-w-[247px]'>
 							<Select
 								className='rounded-sm border-none bg-bgGray  text-gray-800 '
@@ -128,14 +133,12 @@ export default function AddNoteDialog({
 								<Option value={Category.Work}>Work</Option>
 								<Option value={Category.Personal}>Personal</Option>
 							</Select>
+
+							{errors?.category ? (
+								<p className='text-red-500'>{errors.category}</p>
+							) : null}
 						</div>
 					</div>
-					{errors?.title ? (
-						<p className='text-red-500'>{errors.title}</p>
-					) : null}
-					{errors?.category ? (
-						<p className='text-red-500'>{errors.category}</p>
-					) : null}
 					<Textarea
 						className='mt-3 min-h-[227px] rounded-sm border-none !bg-bgGray text-gray-800 lg:mt-7  lg:w-[475px]'
 						placeholder='Add description...'
