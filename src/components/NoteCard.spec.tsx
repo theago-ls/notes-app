@@ -83,4 +83,48 @@ describe('NoteCard', () => {
 		expect(actionsMock.completeNote).toHaveBeenCalled()
 		expect(actionsMock.removeNote).toHaveBeenCalled()
 	})
+
+	it('should show the updatedAt date if the note has been updated', () => {
+		const note = {
+			title: 'Title test',
+			description: 'Description test',
+			category: 'home' as Category,
+			done: false,
+			id: '1',
+			createdAt: new Date('2022-01-01'),
+			updatedAt: new Date()
+		}
+
+		render(
+			<NoteCard
+				note={note}
+				actions={{
+					editNote: () => {},
+					removeNote: () => {},
+					completeNote: () => {}
+				}}
+			/>
+		)
+
+		expect(screen.getByText(note.title)).toBeInTheDocument()
+		expect(screen.getByText(note.description)).toBeInTheDocument()
+		expect(
+			screen.getByText(
+				note.updatedAt.toLocaleDateString('en-us', {
+					year: 'numeric',
+					month: 'short',
+					day: 'numeric'
+				})
+			)
+		).toBeInTheDocument()
+		expect(
+			screen.queryByText(
+				note.createdAt.toLocaleDateString('en-us', {
+					year: 'numeric',
+					month: 'short',
+					day: 'numeric'
+				})
+			)
+		).not.toBeInTheDocument()
+	})
 })

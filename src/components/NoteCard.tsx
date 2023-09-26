@@ -41,7 +41,9 @@ export default function NoteCard({
 	const isSmallerScreen = useMediaQuery('(max-width: 900px)')
 	const [openPopover, setOpenPopover] = useState(false)
 
-	const dateFormatted = new Date(note.createdAt).toLocaleDateString('en-us', {
+	const dateFormatted = new Date(
+		note.updatedAt ? note.updatedAt : note.createdAt
+	).toLocaleDateString('en-us', {
 		year: 'numeric',
 		month: 'short',
 		day: 'numeric'
