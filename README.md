@@ -1,5 +1,17 @@
 # Notes App
 
+Challenge link: (Notes App Project)[https://bigsondev.com/projects/notes-app-project/]
+
+## Tools
+
+- React;
+- TypeScript;
+- Vite;
+- MaterialUI;
+- Tailwind;
+- Testing Library;
+- Cypress.
+
 ## Scripts
 
 - `pnpm dev` - start a development server with hot reload.
