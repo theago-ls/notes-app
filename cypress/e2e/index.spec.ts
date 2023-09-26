@@ -255,7 +255,7 @@ describe('Notes App', () => {
 			.findByRole('button', { name: /Done/i })
 			.click()
 
-		cy.findByText('You have 2/2 notes completed').should('exist')
+		cy.findByText('You have completed all notes').should('exist')
 
 		cy.findByText('Test title home')
 			.parent()
