@@ -35,7 +35,7 @@ export default function NoteCard({
 	actions: {
 		editNote: (note: Note) => void
 		removeNote: (id: string) => void
-		completeNote: (note: Note) => void
+		completeNote: (id: string) => void
 	}
 }): ReactElement {
 	const isSmallerScreen = useMediaQuery('(max-width: 900px)')
@@ -61,7 +61,7 @@ export default function NoteCard({
 						name='done'
 						aria-label='Done'
 						onClick={() => {
-							actions.completeNote({ ...note, done: !note.done })
+							actions.completeNote(note.id)
 						}}
 						className='bg-transparent p-0 shadow-none'
 					>

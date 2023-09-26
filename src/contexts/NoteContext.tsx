@@ -14,6 +14,7 @@ interface NoteContextType {
 	}) => void
 	removeNote: (id: string) => void
 	editNote: (editedNote: Note) => void
+	completeNote: (id: string) => void
 }
 
 export const NoteContext = createContext<NoteContextType>({} as NoteContextType)
@@ -32,7 +33,7 @@ export default function NoteContextProvider({
 				createdAt: new Date()
 			}
 
-			const changedNotes = [...notes, addedNote]
+			const changedNotes = [addedNote, ...notes]
 
 			saveToStorage('notes', changedNotes)
 			setNotes(changedNotes)
@@ -66,14 +67,36 @@ export default function NoteContextProvider({
 		[notes]
 	)
 
+	const completeNote = useCallback(
+		(id: string) => {
+			const note = notes.filter(n => n.id === id)[0]
+
+			const changedNotes = [
+				...notes.filter(n => n.id !== id),
+				{ ...note, done: !note.done }
+			]
+
+			if (note.done) {
+				changedNotes.sort((a: Note, b: Note) =>
+					b.createdAt > a.createdAt ? 1 : -1
+				)
+			}
+
+			saveToStorage('notes', changedNotes)
+			setNotes(changedNotes)
+		},
+		[notes]
+	)
+
 	const value = useMemo(
 		() => ({
 			notes,
 			addNote,
 			removeNote,
-			editNote
+			editNote,
+			completeNote
 		}),
-		[notes, addNote, removeNote, editNote]
+		[notes, addNote, removeNote, editNote, completeNote]
 	)
 
 	return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>

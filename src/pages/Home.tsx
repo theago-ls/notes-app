@@ -40,7 +40,8 @@ export default function Home(): ReactElement {
 	const [selectedNote, setSelectedNote] = useState<Note | null>(null)
 	const [showModal, setShowModal] = useState(false)
 
-	const { notes, addNote, editNote, removeNote } = useContext(NoteContext)
+	const { notes, addNote, editNote, removeNote, completeNote } =
+		useContext(NoteContext)
 
 	const filteredNotes = notes
 		.filter(note =>
@@ -106,9 +107,7 @@ export default function Home(): ReactElement {
 										setSelectedNote(sNote)
 										setShowModal(true)
 									},
-									completeNote: (completedNote: Note) => {
-										editNote(completedNote)
-									}
+									completeNote
 								}}
 							/>
 					  ))
