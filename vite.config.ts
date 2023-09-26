@@ -6,6 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig(({ mode }) => ({
+	base: mode === 'production' ? '/notes-app/' : '/',
 	test: {
 		css: false,
 		include: ['src/**/*.spec.ts?(x)'],
