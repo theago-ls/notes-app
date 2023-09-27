@@ -5,7 +5,7 @@ import { v1 as uuidv1 } from 'uuid'
 import type { Category, Note } from 'types'
 import { getFromStorage, saveToStorage } from 'utils'
 
-interface NoteContextType {
+export type NoteContextType = {
 	notes: Note[]
 	addNote: (note: {
 		title: string

@@ -11,8 +11,10 @@ import {
 } from '@material-tailwind/react'
 import type { ReactElement } from 'react'
 import { useEffect, useState } from 'react'
+
 import type { Note } from 'types'
 import { Category } from 'types'
+
 import { useMediaQuery } from 'utils'
 
 type NewNote = {

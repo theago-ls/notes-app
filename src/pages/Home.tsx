@@ -1,14 +1,17 @@
 import { Button } from '@material-tailwind/react'
-import { useContext, useState, type ReactElement } from 'react'
+import { useState, type ReactElement } from 'react'
 import { MdAdd } from 'react-icons/md'
 
-import AddNoteDialog from 'components/AddNoteDialog'
-import CategoryFilter from 'components/CategoryFilter'
-import CompletedProgressBar from 'components/CompletedProgressBar'
-import NoteCard from 'components/NoteCard'
-import Search from 'components/Search'
-import { NoteContext } from 'contexts/NoteContext'
+import {
+	AddNoteDialog,
+	CategoryFilter,
+	CompletedProgressBar,
+	NoteCard,
+	Search
+} from 'components'
+
 import type { Category, Note } from 'types'
+import { useNoteContext } from 'hooks'
 
 const renderEmptyImage = (isSearchQuery: boolean) =>
 	isSearchQuery ? (
@@ -41,7 +44,7 @@ export default function Home(): ReactElement {
 	const [showModal, setShowModal] = useState(false)
 
 	const { notes, addNote, editNote, removeNote, completeNote } =
-		useContext(NoteContext)
+		useNoteContext()
 
 	const filteredNotes = notes
 		.filter(note =>
